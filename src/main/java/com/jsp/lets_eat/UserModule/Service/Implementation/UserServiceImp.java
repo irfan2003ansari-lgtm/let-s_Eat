@@ -69,7 +69,7 @@ public class UserServiceImp implements UserService {
             throw new UserException("User with id: " + id + " is inactive");
         }
     }
-git brancj
+
     public void delete(Integer id){
         User user=userRepository.findById(id).orElseThrow(() -> new UserException("User not found with id: " + id));
         user.setActive(false);
