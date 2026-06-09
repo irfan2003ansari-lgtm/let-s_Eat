@@ -52,4 +52,12 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage("An unexpected error occurred: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
+
+    @ExceptionHandler(FoodException.class)
+    public ResponseEntity<ErrorResponseStructure> handleFoodException(FoodException ex) {
+        ErrorResponseStructure errorResponse = new ErrorResponseStructure();
+        errorResponse.setStatuscode(404);
+        errorResponse.setMessage(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
 }

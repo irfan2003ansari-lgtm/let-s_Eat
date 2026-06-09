@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,6 +34,8 @@ public class Resturant {
     @OneToOne
     @JoinColumn(name = "manager_id")
     private User manager;
+    @OneToMany(mappedBy = "resturant", cascade = CascadeType.ALL)
+    private List<FoodItem> food;
 
     public Resturant(ResturantRequest resturantRequest) {
         this.ressturantName = resturantRequest.getRessturantName();
