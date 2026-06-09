@@ -2,8 +2,10 @@ package com.jsp.lets_eat.ResturantModule.Service;
 
 import com.jsp.lets_eat.CommonModule.Exception.ResturantException;
 import com.jsp.lets_eat.ResturantModule.Dao.ResturantRepository;
+import com.jsp.lets_eat.ResturantModule.Dto.FoodResponse;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantRequest;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantResponse;
+import com.jsp.lets_eat.ResturantModule.Model.FoodItem;
 import com.jsp.lets_eat.ResturantModule.Model.Resturant;
 import com.jsp.lets_eat.UserModule.Entity.Role;
 import com.jsp.lets_eat.UserModule.Entity.User;
@@ -188,6 +190,21 @@ public class ResturantServiceImp implements ResturantService {
             return new ResturantResponse(resturant);
         }
         else {
+            throw new ResturantException("Resturant with id: " + resturantId + " is inactive");
+        }
+    }
+
+    @Override
+    public List<FoodResponse> getFoodItemsByResturantId(Long resturantId) {
+        Resturant resturant=resturantRepository.findById(resturantId).orElseThrow(() -> new ResturantException("Resturant not found with id: " + resturantId));
+        if(resturant.getActive()){
+            List<FoodItem> foodItems=resturant.getFood();
+            List<FoodResponse> responses=new ArrayList<>();
+            for(FoodItem food:foodItems){
+                responses.add(new FoodResponse(food));
+            }
+            return responses;
+        }else {
             throw new ResturantException("Resturant with id: " + resturantId + " is inactive");
         }
     }

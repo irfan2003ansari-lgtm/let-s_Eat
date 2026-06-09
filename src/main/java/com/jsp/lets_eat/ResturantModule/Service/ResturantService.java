@@ -1,7 +1,10 @@
 package com.jsp.lets_eat.ResturantModule.Service;
 
+import com.jsp.lets_eat.ResturantModule.Dto.FoodResponse;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantRequest;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantResponse;
+import com.jsp.lets_eat.ResturantModule.Model.FoodItem;
+
 import java.util.List;
 
 
@@ -16,4 +19,5 @@ public interface ResturantService {
      List<ResturantResponse> getAll();
      List<ResturantResponse> getResturantByLoc(String city);
      ResturantResponse updateManager(Long resturantId,Integer userId );
+    List<FoodResponse> getFoodItemsByResturantId(Long resturantId);
 }

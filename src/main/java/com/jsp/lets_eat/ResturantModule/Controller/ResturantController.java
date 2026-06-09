@@ -1,7 +1,9 @@
 package com.jsp.lets_eat.ResturantModule.Controller;
 
+import com.jsp.lets_eat.ResturantModule.Dto.FoodResponse;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantRequest;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantResponse;
+import com.jsp.lets_eat.ResturantModule.Model.FoodItem;
 import com.jsp.lets_eat.ResturantModule.Service.ResturantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -57,6 +59,11 @@ public class ResturantController {
     @PatchMapping("/updateManager")
     public ResponseEntity<ResturantResponse> updateManager(@RequestParam Long resturantId,@RequestParam Integer userId ){
         return ResponseEntity.status(HttpStatus.OK).body(resturantService.updateManager(resturantId,userId));
+    }
+
+    @GetMapping("/foodItems")
+    public ResponseEntity<List<FoodResponse>> getFoodItemsByResturantId(@RequestParam Long resturantId){
+        return ResponseEntity.status(HttpStatus.OK).body(resturantService.getFoodItemsByResturantId(resturantId));
     }
 /*
     @Operation(description = "API to update resturant details by ID")
