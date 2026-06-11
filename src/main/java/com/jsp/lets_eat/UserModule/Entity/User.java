@@ -1,5 +1,6 @@
 package com.jsp.lets_eat.UserModule.Entity;
 
+import com.jsp.lets_eat.CartModule.Model.Cart;
 import com.jsp.lets_eat.ResturantModule.Model.Resturant;
 import com.jsp.lets_eat.UserModule.Dto.UserRequest;
 import jakarta.persistence.*;
@@ -29,6 +30,10 @@ public class User {
     private Boolean active;
     @OneToOne(mappedBy = "manager")
     private Resturant resturant;
+
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
+
 
     public User(UserRequest userRequest) {
         this.name = userRequest.getName();

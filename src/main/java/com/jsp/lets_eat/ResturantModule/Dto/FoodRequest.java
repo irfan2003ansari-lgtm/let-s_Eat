@@ -9,7 +9,6 @@ public class FoodRequest {
     private String description;
     private Double price;
     private FoodCategory catogry;
-    // use enum class for catogory
     private String imageUrl;
     private Integer stock;
     private Long resturant_id;

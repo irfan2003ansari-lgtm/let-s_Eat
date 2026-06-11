@@ -40,7 +40,6 @@ public class FoodServiceImp implements FoodService {
 
         return new FoodResponse(food);
 
-
     }
 
     @Override
@@ -69,7 +68,6 @@ public class FoodServiceImp implements FoodService {
         } else {
             for (FoodItem food : foodItems) {
                 Resturant resturant = food.getResturant();
-
                 if (resturant.getActive()) {
                     LocalTime time = LocalTime.now();
                     boolean Open = !time.isBefore(resturant.getOpeningTime()) &&

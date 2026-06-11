@@ -60,62 +60,7 @@ public class ResturantServiceImp implements ResturantService {
             throw new ResturantException("Resturant with id: " + id + " is inactive");
         }
     }
-/*
-    @Override
-    public void deleteResturant(Long id) {
 
-        Resturant resturant=resturantRepository.findById(id).orElseThrow(() -> new ResturantNotFoundException("Resturant not found with id: " + id));
-      if(resturant.getActive()){
-          resturant.setActive(false);
-          resturantRepository.save(resturant);
-      }else {
-          throw new ResturantNotFoundException("Resturant with id: " + id + " is already inactive");
-      }
-    }
-
- */
-/*
-    @Override
-    public ResturantResponse updateResturant(Long id, ResturantRequest request) {
-        Resturant resturant=resturantRepository.findById(id).orElseThrow(() -> new ResturantNotFoundException("Resturant not found with id: " + id));
-    if(resturant.getActive()){
-        if (request.getRessturantName() != null) {
-            resturant.setRessturantName(request.getRessturantName());
-        }
-
-        if (request.getDescription() != null) {
-            resturant.setDescription(request.getDescription());
-        }
-
-        if (request.getAddress() != null) {
-            resturant.setAddress(request.getAddress());
-        }
-
-        if (request.getCity() != null) {
-            resturant.setCity(request.getCity());
-        }
-
-        if (request.getState() != null) {
-            resturant.setState(request.getState());
-        }
-
-        if (request.getCountry() != null) {
-            resturant.setCountry(request.getCountry());
-        }
-
-        if (request.getOpeningTime() != null) {
-            resturant.setOpeningTime(request.getOpeningTime());
-        }
-
-        if (request.getClosingTime() != null) {
-            resturant.setClosingTime(request.getClosingTime());
-        }
-        return new ResturantResponse(resturantRepository.save(resturant));
-    }else {
-        throw new ResturantNotFoundException("Resturant with id: " + id + " is inactive");
-    }
-    }
-    */
 
     @Override
     public List<ResturantResponse> getResturantByName(String name) {

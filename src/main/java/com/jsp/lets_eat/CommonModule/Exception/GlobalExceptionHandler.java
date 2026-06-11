@@ -60,4 +60,12 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+
+    @ExceptionHandler(CartException.class)
+    public ResponseEntity<ErrorResponseStructure> handleCartException(CartException ex) {
+        ErrorResponseStructure errorResponse = new ErrorResponseStructure();
+        errorResponse.setStatuscode(404);
+        errorResponse.setMessage(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
 }

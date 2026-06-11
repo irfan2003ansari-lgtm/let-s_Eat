@@ -3,7 +3,6 @@ package com.jsp.lets_eat.ResturantModule.Controller;
 import com.jsp.lets_eat.ResturantModule.Dto.FoodResponse;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantRequest;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantResponse;
-import com.jsp.lets_eat.ResturantModule.Model.FoodItem;
 import com.jsp.lets_eat.ResturantModule.Service.ResturantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -46,45 +45,36 @@ public class ResturantController {
         return ResponseEntity.status(HttpStatus.OK).body(resturantService.getResturantByName(name));
     }
 
+    @Operation(description = "API to get all resturants")
+    @ApiResponse(description = "Returns a list of all resturants", responseCode = "200")
+    @ApiResponse(description = "No resturants found", responseCode = "404")
     @GetMapping("/resturantall")
     public ResponseEntity<List<ResturantResponse>> getAllResturant(){
         return ResponseEntity.status(HttpStatus.OK).body(resturantService.getAll());
     }
 
+    @Operation(description = "API to get resturant details by location")
+    @ApiResponse(description = "Returns the resturant details for the given location", responseCode = "200")
+    @ApiResponse(description = "Resturant not found for the given location", responseCode = "404")
     @GetMapping("/resturantByLoc")
     public ResponseEntity<List<ResturantResponse>> getResturantByLoc(@RequestParam String city){
         return ResponseEntity.status(HttpStatus.OK).body(resturantService.getResturantByLoc(city));
     }
 
+    @Operation(description = "API to update the manager of a resturant")
+    @ApiResponse(description = "Returns the updated resturant details with the new manager", responseCode = "200")
+    @ApiResponse(description = "Resturant not found for the given ID", responseCode = "404")
     @PatchMapping("/updateManager")
     public ResponseEntity<ResturantResponse> updateManager(@RequestParam Long resturantId,@RequestParam Integer userId ){
         return ResponseEntity.status(HttpStatus.OK).body(resturantService.updateManager(resturantId,userId));
     }
 
+    @Operation(description = "API to get food items of a resturant by resturant ID")
+    @ApiResponse(description = "Returns a list of food items for the given resturant ID", responseCode = "200")
+    @ApiResponse(description = "Resturant not found for the given ID", responseCode = "404")
     @GetMapping("/foodItems")
     public ResponseEntity<List<FoodResponse>> getFoodItemsByResturantId(@RequestParam Long resturantId){
         return ResponseEntity.status(HttpStatus.OK).body(resturantService.getFoodItemsByResturantId(resturantId));
     }
-/*
-    @Operation(description = "API to update resturant details by ID")
-    @ApiResponse(description = "Returns the updated resturant details for the given ID", responseCode = "200")
-    @ApiResponse(description = "Resturant not found for the given ID", responseCode = "404")
-    @PatchMapping("/updateResturant")
-    public ResponseEntity<ResturantResponse> updateResturant(@RequestParam Long id,@RequestBody ResturantRequest resturantRequest){
-        return ResponseEntity.status(HttpStatus.OK).body(resturantService.updateResturant(id,resturantRequest));
-    }
-
- */
-/*
-    @Operation(description = "API to delete a resturant by ID")
-    @ApiResponse(description = "Returns a success message if the resturant is deleted successfully", responseCode = "200")
-    @ApiResponse(description = "Resturant not found for the given ID", responseCode = "404")
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteResturant(@RequestParam Long id){
-        resturantService.deleteResturant(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Resturant with id "+id+" deleted successfully");
-    }
-
- */
 
 }
