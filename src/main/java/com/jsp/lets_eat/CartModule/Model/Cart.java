@@ -1,5 +1,6 @@
 package com.jsp.lets_eat.CartModule.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jsp.lets_eat.UserModule.Entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,8 +21,10 @@ public class Cart {
     private Long cartId;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_Id")
+    @JsonIgnore
     private User user;
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private List<CartItem> cartItemList=new ArrayList<>();
     private Double totalPrice;
 

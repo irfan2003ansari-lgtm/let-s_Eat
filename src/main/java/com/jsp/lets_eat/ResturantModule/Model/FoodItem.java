@@ -1,5 +1,6 @@
 package com.jsp.lets_eat.ResturantModule.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jsp.lets_eat.ResturantModule.Dto.FoodRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ public class FoodItem {
     private Boolean isAvailable;
     @ManyToOne
     @JoinColumn(name = "resturant_id")
+    @JsonIgnore
     private Resturant resturant;
 
     public FoodItem(FoodRequest foodRequest) {

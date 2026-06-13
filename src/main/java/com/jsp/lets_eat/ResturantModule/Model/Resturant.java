@@ -1,5 +1,6 @@
 package com.jsp.lets_eat.ResturantModule.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jsp.lets_eat.ResturantModule.Dto.ResturantRequest;
 import com.jsp.lets_eat.UserModule.Entity.User;
 import jakarta.persistence.*;
@@ -33,8 +34,10 @@ public class Resturant {
     private String imageUrl;
     @OneToOne
     @JoinColumn(name = "manager_id")
+    @JsonIgnore
     private User manager;
     @OneToMany(mappedBy = "resturant", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<FoodItem> food;
 
     public Resturant(ResturantRequest resturantRequest) {

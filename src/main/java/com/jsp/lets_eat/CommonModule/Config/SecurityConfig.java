@@ -15,7 +15,11 @@ public class SecurityConfig {
 
 return security.csrf(csrf->csrf.disable()).cors(cors->cors.disable())
         .authorizeHttpRequests(
-                auth->auth.requestMatchers("/lets-eat/**").permitAll()
+                auth->auth.requestMatchers("/lets-eat/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
         ).build();
 

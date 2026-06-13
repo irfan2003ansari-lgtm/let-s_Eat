@@ -68,4 +68,12 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+
+    @ExceptionHandler(OrderException.class)
+    public ResponseEntity<ErrorResponseStructure> handleOrderException(OrderException e){
+        ErrorResponseStructure rsponse=new ErrorResponseStructure();
+        rsponse.setStatuscode(404);
+        rsponse.setMessage(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(rsponse);
+    }
 }
